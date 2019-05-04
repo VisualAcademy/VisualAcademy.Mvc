@@ -35,12 +35,8 @@ namespace VisualAcademy
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>().AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Identity 옵션 설정
             services.Configure<IdentityOptions>(options =>
@@ -49,6 +45,7 @@ namespace VisualAcademy
                 options.Password.RequiredLength = 8; // 암호는 최소 8자로 
                 options.Password.RequireDigit = true; // 숫자 반드시 포함
                 options.Password.RequireLowercase = true; // 소문자 반드시 포함
+                options.Password.RequireNonAlphanumeric = true; // 알파벳 이외의 문자 필요  
 
                 // 잠금 설정
                 options.Lockout.MaxFailedAccessAttempts = 5; // 5번 시도 후 잠금

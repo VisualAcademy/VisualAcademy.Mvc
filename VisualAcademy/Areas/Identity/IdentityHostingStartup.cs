@@ -15,6 +15,10 @@ namespace VisualAcademy.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
+
+                //// Startup.cs를 사용하지 않고 IdentityHostingStartup.cs 파일에서 IdentityUser와 ApplicatoinDbContext를 지정하는 경우
+                //services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+
             });
         }
     }
