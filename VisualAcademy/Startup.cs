@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using VisualAcademy.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VisualAcademy.Models;
 
 namespace VisualAcademy
 {
@@ -36,7 +37,7 @@ namespace VisualAcademy
             });
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>().AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>().AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Identity 옵션 설정
             services.Configure<IdentityOptions>(options =>
