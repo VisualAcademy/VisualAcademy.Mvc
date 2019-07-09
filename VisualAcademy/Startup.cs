@@ -10,6 +10,7 @@ using VisualAcademy.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VisualAcademy.Models;
+using VisualAcademy.Services;
 
 namespace VisualAcademy
 {
@@ -51,6 +52,9 @@ namespace VisualAcademy
                 // 사용자 설정
                 options.User.RequireUniqueEmail = true; // 이메일 중복 방지
             });
+
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
